@@ -1,0 +1,19 @@
+{{- $appName := .Values.appName -}}
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: {{ $appName }}
+  name: {{ $appName }}
+spec:
+  ports:
+  - name: 80-80
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: {{ $appName }}
+  type: ClusterIP
+status:
+  loadBalancer: {}

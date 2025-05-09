@@ -1,0 +1,5 @@
+image: nginx
+tag: latest
+serviceAccountName: sa-devmode
+appName: myapp-devmode
+namespace: ns-devmode

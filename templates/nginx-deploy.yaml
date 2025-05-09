@@ -1,0 +1,30 @@
+{{- $namespace := .Values.namespace -}}
+{{- $appName := .Values.appName -}}
+{{- $image := .Values.image -}}
+{{- $tag := .Values.tag -}}
+{{- $serviceAccountName := .Values.serviceAccountName -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: {{ $appName }}
+  name: {{ $appName }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ $appName }}
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: {{ $appName }}
+    spec:
+      serviceAccountName: {{ $serviceAccountName }}
+      containers:
+      - image: {{ $image }}:{{ $tag }}
+        name: {{ $appName }}
+        resources: {}
+status: {}
